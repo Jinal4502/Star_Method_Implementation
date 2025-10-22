@@ -21,7 +21,7 @@ This repository implements **Supervised Fine-Tuning (SFT)** and **STaR (Self-Tau
 
 | Script | Purpose |
 |---------|----------|
-| **sbatch_zero_shot.sh** | Runs `zero_shot.py` on the HPC cluster. |
+| **sbatch_zero_shot.sh** | Runs `zero_shot.py` on the SOL Supercomputer. |
 | **sbatch_bootstrap.sh** | Runs `bootstrapped_data_generation.py` for dataset creation. |
 | **sbatch_vanila.sh** | Launches Vanilla SFT training on GSM8K. |
 | **sbatch_star.sh** | Launches STaR SFT training on bootstrapped data. |
