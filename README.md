@@ -50,5 +50,5 @@ sbatch sbatch_inference.sh
 ```
 
 **Author:** Jinal Vyas  
-**Course:** CSE 573 – Fall 2025  
+**Course:** CSE 576 – Fall 2025  
 **Institution:** Arizona State University  
