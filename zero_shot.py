@@ -53,25 +53,20 @@ def normalize_gold(ans: str):
     if "####" in ans:
         ans = ans.split("####")[-1]
     return re.sub(r"[^\d\.\-]", "", ans.replace(",", ""))
-
-# ------------- Few-shot exemplars (short CoT) -------------
-FEW_SHOT_EXAMPLES = """
-Q: If there are 3 apples and you buy 2 more, how many apples do you have?
-A: We start with 3 apples and buy 2 more, so 3 + 2 = 5.
-#### 5
-
-Q: A car travels 60 miles per hour for 3 hours. How far does it go?
-A: Distance = speed × time = 60 × 3 = 180 miles.
-#### 180
-"""
-
-# ------------- Build prompts -------------
+    
+# ------------- Zero-shot prompt builder -------------
 def build_prompt(question):
+    """
+    Builds a zero-shot Chain-of-Thought (CoT) prompt for GSM8K-style math reasoning.
+    Encourages step-by-step explanation and ensures the final numeric answer
+    is clearly marked for extraction.
+    """
     return (
-        "You are a brilliant math tutor who reasons carefully step by step.\n"
-        "Show your reasoning clearly and finish with '#### [number]'.\n\n"
-        + FEW_SHOT_EXAMPLES
-        + f"\nQ: {question}\nA:"
+        "You are an expert math tutor who explains your reasoning clearly and precisely.\n"
+        "Solve the following problem carefully step by step, showing your full thought process.\n"
+        "At the end of your reasoning, write the final numeric answer on a new line "
+        "in the format: '#### [number]'.\n\n"
+        f"Question: {question}\nAnswer:"
     )
 
 # ------------- Self-consistency evaluation -------------
